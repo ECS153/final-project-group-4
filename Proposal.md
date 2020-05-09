@@ -18,8 +18,8 @@ We already have a couple of resources to get started with:
 
 The first steps to take:
 * We need to implement the encryption/decryption table into a program
-* create a generator for the one-time pads 
-* create an application that allows users to send messages back and forth
+* Create a generator for the one-time pads 
+* Create an web application that allows users to send and recive messages
 
 Webapp:
 In order to implement the dead drop we create a web server that anyone can upload text onto, hopefully, this is ciphertext. the ciphertext is preceded by a keyword that the communicators agree on, probably when they share the keys. This way communicators can find their partners easily, but if the entire user base works on one webpage metadata is not enough to tie them to any one person they are communicating with. This is possible without compromising the security of the messages because of the properties of OTP encryption. The ciphertext is essentially blasted out to everyone but it only has meaning to people who have the key.
