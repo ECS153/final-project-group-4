@@ -1,6 +1,6 @@
 # Project Proposal: One Time Pad
 
-Our Group's Idea is to create a messaging application that is encrypted using the one-time pad process. This Encryption technique is uncrackable on a cursory search. The only disadvantage of this encryption technique is that two communicators must share a key, which is the one-time-pad, in a way that cannot be intercepted. This may mean that they meet in person to exchange a key, rely on a courier or a number or other techniques. There is one other problem that makes this encryption less effective than in the days of WW2 is that communications can still be tracked via metadata, I believe we can solve this with some trickery using a dead drop onto a web app that we will build.
+Our Group's Idea is to create a messaging application that is encrypted using the one-time pad process. This Encryption technique is proven to be unbreakable however documentation of the proof is classified. The only disadvantage of this encryption technique is that two communicators must share a key, which is the one-time-pad, in a way that cannot be intercepted. This may mean that they meet in person to exchange a key, rely on a courier or a number or other techniques. There is one other problem that makes this encryption less effective than in the days of WW2 is that communications can still be tracked via metadata, I believe we can solve this with some trickery using a dead drop onto a web app that we will build.
 
 One time pad encryption relies on 4 pillars:
 1. the key is truly random
