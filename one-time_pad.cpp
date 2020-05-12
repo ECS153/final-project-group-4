@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 
+//generate a standard library for the universal tabling 
 void GenerateBoard(std::vector< std::vector<char> > &v, const std::vector<char> rule){
 	for(int i = 0; i < rule.size(); i++){
 		if (i ==0){
@@ -21,6 +22,7 @@ void GenerateBoard(std::vector< std::vector<char> > &v, const std::vector<char> 
 	}
 }
 
+//process the inputing string
 std::vector<char> splitastring(std::string InputStr){
 	std::vector <char> tempstr;
 	for (auto i : InputStr){
@@ -28,7 +30,7 @@ std::vector<char> splitastring(std::string InputStr){
 	}
 	return tempstr;
 }
-
+//get the element index in a list [A to Z and 0 to 9] with binary search
 int FindElement(char Element){
 	double ascii_num = (double) Element;
 	int char_beg = 65;
@@ -70,6 +72,7 @@ int FindElement(char Element){
 	return Balence_int-48+26;
 }
 
+//function of decoding
 std::string Decode(std::string One_Time, std::string CyberText, 
 			const std::vector< std::vector<char> > library, 
 			const std::vector<char> standard){
@@ -108,7 +111,7 @@ int main(){
 	int check_point_cyber = 0;
 	std::string One;
 	std::string Cyber;
-	while (true){
+	while (true){ //confirm the input is valid
 		std::cout << "Input the One-Time Pad -> ";
 		std::cin >> One;
 		std::cout << "Input the CyberText -> ";
