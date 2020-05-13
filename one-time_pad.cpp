@@ -10,7 +10,7 @@ void GenerateBoard(std::vector< std::vector<char> > &v, const std::vector<char> 
 			v.push_back(rule);
 		}
 		else{
-			std::vector<char> Temp;
+			std::vector<char> Temp; //push in as two part, from start to end, from 0 to start, since it may not always start at A
 			for (int j = i; j < rule.size(); j++){
 				Temp.push_back(rule[j]);
 			}
@@ -77,13 +77,13 @@ std::string Decode(std::string One_Time, std::string CyberText,
 			const std::vector< std::vector<char> > library, 
 			const std::vector<char> standard){
 
-	std::vector<char> One_Time_list = splitastring(One_Time);
+	std::vector<char> One_Time_list = splitastring(One_Time);//split out the input
 	std::vector<char> CyberText_list = splitastring(CyberText);
 	std::string decodeText = "";
 	char element = ' ';
-	for (int i = 0; i < CyberText_list.size(); i++){
+	for (int i = 0; i < CyberText_list.size(); i++){ //one time pad can be longer than the cybertext
 		int temp_index = 0;
-		for (auto ele : library[FindElement(One_Time_list[i])]){
+		for (auto ele : library[FindElement(One_Time_list[i])]){//loop the vector to find the cyber text in the standard table
 			if (ele != CyberText[i]){
 				temp_index++;
 			}
@@ -101,10 +101,11 @@ std::string Encode(std::string One_Time, std::string CyberText,
 			const std::vector< std::vector<char> > library, 
 			const std::vector<char> standard){
 
-	std::vector<char> One_Time_list = splitastring(One_Time);
+	std::vector<char> One_Time_list = splitastring(One_Time); //split out the input
 	std::vector<char> CyberText_list = splitastring(CyberText);
 	std::string EncodedText = "";
 
+	//get the value from X and Y axis from the standard table
 	for (int each_index = 0; each_index < CyberText_list.size(); each_index++){
 		EncodedText += library[FindElement(One_Time_list[each_index])][FindElement(CyberText_list[each_index])];
 	}
@@ -139,7 +140,7 @@ int main(){
 		std::cin >> One;
 		std::cout << "Input the CyberText for decrypted or Text to Encrypted -> ";
 		std::cin >> Cyber;
-		for(auto i : One){
+		for(auto i : One){//check the capitalization of the input
 			if (((int) i >=48 && (int) i <= 57) || ((int) i >=65 && (int) i <= 90)){
 				check_point_One_Time++;
 			}
@@ -149,6 +150,7 @@ int main(){
 				check_point_cyber++;
 			}
 		}
+		//need to be number or full cap, one time pad can be longer than text, but not shorter, there are only two options for modes
 		if (check_point_cyber != Cyber.size() || check_point_One_Time != One.size() || (Options != "a" && Options != "b") || (check_point_One_Time < check_point_cyber)){
 			One = "";
 			Cyber = "";
@@ -161,7 +163,7 @@ int main(){
 		}
 	}
 	
-	if (Options == "a"){
+	if (Options == "a"){ //different mode, encryted, and decryted
 		std::string PlainText = Encode(One, Cyber, VECTOR, num_char);
 		std::cout << PlainText << std::endl;
 	}
