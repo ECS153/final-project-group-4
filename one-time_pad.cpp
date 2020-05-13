@@ -81,7 +81,7 @@ std::string Decode(std::string One_Time, std::string CyberText,
 	std::vector<char> CyberText_list = splitastring(CyberText);
 	std::string decodeText = "";
 	char element = ' ';
-	for (int i = 0; i < One_Time_list.size(); i++){
+	for (int i = 0; i < CyberText_list.size(); i++){
 		int temp_index = 0;
 		for (auto ele : library[FindElement(One_Time_list[i])]){
 			if (ele != CyberText[i]){
@@ -94,6 +94,21 @@ std::string Decode(std::string One_Time, std::string CyberText,
 		decodeText += element;
 	}
 	return decodeText;
+
+}
+//function for encoding
+std::string Encode(std::string One_Time, std::string CyberText, 
+			const std::vector< std::vector<char> > library, 
+			const std::vector<char> standard){
+
+	std::vector<char> One_Time_list = splitastring(One_Time);
+	std::vector<char> CyberText_list = splitastring(CyberText);
+	std::string EncodedText = "";
+
+	for (int each_index = 0; each_index < CyberText_list.size(); each_index++){
+		EncodedText += library[FindElement(One_Time_list[each_index])][FindElement(CyberText_list[each_index])];
+	}
+	return EncodedText;
 
 }
 
@@ -111,10 +126,18 @@ int main(){
 	int check_point_cyber = 0;
 	std::string One;
 	std::string Cyber;
+	std::string Options;
+	//One = "W8JD7SDJFHSK";
+	//Cyber = "HELLO";
+	//Options = "a";
+	//Cyber = "3CUOL";
+	
 	while (true){ //confirm the input is valid
+		std::cout << "Enter 'a' for 'Encrypted' or 'b' for 'decrypted' -> ";
+		std::cin >> Options;
 		std::cout << "Input the One-Time Pad -> ";
 		std::cin >> One;
-		std::cout << "Input the CyberText -> ";
+		std::cout << "Input the CyberText for decrypted or Text to Encrypted -> ";
 		std::cin >> Cyber;
 		for(auto i : One){
 			if (((int) i >=48 && (int) i <= 57) || ((int) i >=65 && (int) i <= 90)){
@@ -126,9 +149,10 @@ int main(){
 				check_point_cyber++;
 			}
 		}
-		if (check_point_cyber != Cyber.size() || check_point_One_Time != One.size()){
+		if (check_point_cyber != Cyber.size() || check_point_One_Time != One.size() || (Options != "a" && Options != "b") || (check_point_One_Time < check_point_cyber)){
 			One = "";
 			Cyber = "";
+			Options = "";
 			check_point_One_Time = 0;
 			check_point_cyber = 0;
 		}
@@ -136,10 +160,15 @@ int main(){
 			break;
 		}
 	}
-	//std::string One = "W8JD7";
-	//std::string Cyber = "3CUOL";
-	std::string PlainText = Decode(One, Cyber, VECTOR, num_char);
-	std::cout << PlainText << std::endl;
+	
+	if (Options == "a"){
+		std::string PlainText = Encode(One, Cyber, VECTOR, num_char);
+		std::cout << PlainText << std::endl;
+	}
+	else{
+		std::string PlainText = Decode(One, Cyber, VECTOR, num_char);
+		std::cout << PlainText << std::endl;
+	}
 	/*
 	for (int each_element = 0; each_element < VECTOR.size(); each_element++){
 		std::string Text;
