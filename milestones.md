@@ -4,10 +4,10 @@
 This time, we discuss what we can do to extend the project. We kind of want to work toward the Login confirmation for checking real person action. Also, we want to build a more user friendly to encryted and decryted the messages. We are thinking of Google Chrome extension or local application.
 
 **Goals and Responsibilities**  
-*Weishen Liu* - Build a better One time pad for user friendly, milestone documents
-*Andrew Samuelson* - Begin working on login method
-*Sarrah Kothawala* - begin working on login method
-*Hexi Huang* - Web building
+*Weishen Liu* - Build a better One time pad for user friendly, milestone documents <br/>
+*Andrew Samuelson* - Begin working on login method <br/>
+*Sarrah Kothawala* - begin working on login method <br/>
+*Hexi Huang* - Build the Website <br/>
 
 [Video For 5/19/2020](https://www.youtube.com/watch?v=OUrIGazI4BM)
 
