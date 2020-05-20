@@ -8,6 +8,7 @@ This time, we discuss what we can do to extend the project. We kind of want to w
 *Andrew Samuelson* - Begin working on login method <br/>
 *Sarrah Kothawala* - begin working on login method <br/>
 *Hexi Huang* - Build the Website <br/>
+link to the website: https://pumped-aspiring-sink.glitch.me/
 
 [Video For 5/19/2020](https://www.youtube.com/watch?v=OUrIGazI4BM)
 
@@ -19,6 +20,7 @@ First meeting, got everyone on the same page about the project and the end goal 
 *Weishen Liu* - Begin working on decryption function  
 *Andrew Samuelson* - Begin Working on decryption function  
 *Hexi Huang* - Create video, milestone documents and assist in programming 
+
 
 [Video For 5/12/2020](https://www.youtube.com/watch?v=nf5VZhvOlS0)
 
