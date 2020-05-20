@@ -1,5 +1,5 @@
 # Milestones
-## Milestone 2 - 5/12/2020
+## Milestone 2 - 5/19/2020
 
 This time, we discuss what we can do to extend the project. We kind of want to work toward the Login confirmation for checking real person action. Also, we want to build a more user friendly to encryted and decryted the messages. We are thinking of Google Chrome extension or local application.
 
