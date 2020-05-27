@@ -9,7 +9,7 @@ We have made up our minds on how to grow the project in ways that everyone is in
 *Sarrah Kothawala* - Finish up website authentication and help with breaking <br/>
 *Hexi Huang* - resarch and build truly random number generator <br/>
 
-PR- https://github.com/ECS153/final-project-group-4/pull/2
+PR- https://github.com/ECS153/final-project-group-4/pull/2 - merged
 
 ## Milestone 2 - 5/19/2020
 
