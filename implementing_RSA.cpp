@@ -77,12 +77,53 @@ unsigned long long int get_the_d(unsigned long long int e_value, unsigned long l
 	return d_value[temp_index];
 }
 
-unsigned long long int EncrypteMessage(unsigned long long int E, unsigned long long int N, char M){
+unsigned long long int EncrypteMessage(unsigned long long int E, unsigned long long int N, char M){//http://www.cplusplus.com/forum/general/100351/
 	return (unsigned long long int)(pow(int(M),E)) % N;
 }
 
 char DecrypteMessage(unsigned long long int D, unsigned long long int N, unsigned long long int M){
 	return char((unsigned long long int)pow(M,D) % N);
+}
+
+void powerfunction(unsigned long long int power, unsigned long long int Mes){
+	std::cout<<"pass";
+
+	std::vector<int> temp_arr={};
+	int i = 0;
+	while(i < 2048){
+		temp_arr.push_back(0);
+		i += 1;
+	}
+	std::string temp_str = "" + Mes;
+	std::vector<int> mes_vector = {};
+	for (int i = 1; i <= temp_str.size(); i++){
+		temp_arr[0-i] = (int)temp_str[0-i];
+		mes_vector.push_back((int)temp_str[i]);
+	}
+	
+	unsigned long long int time = 0;
+	unsigned long long int indexing = 0;
+	unsigned long long int pass_up = 0;
+	while(time < power){
+		for(int j = 1; j <= mes_vector.size();j++ ){
+			for (int i = 1; i <= temp_arr.size(); i++){
+				int result = temp_arr[0-i] * mes_vector[0-j];
+				pass_up = result / (int)pow(10,i);
+				int reminder = result % (int)pow(10,i);
+				temp_arr[0-i] = reminder + pass_up;
+
+			}
+		}
+		time += 1;
+	}
+	std::ofstream myfile;
+	myfile.open("powerfunction.txt");
+	for (int i = 0 ; i < temp_arr.size() ; i++){
+		myfile << temp_arr[i];
+	}
+	
+  	myfile.close();
+
 }
 
 std::string readinfile(std::string file_name){ https://www.w3schools.com/cpp/cpp_files.asp
@@ -106,6 +147,7 @@ void actionE(){
 	std::cout << "Enter Public key file name >>> ";
 	std::cin >> PK_name;
 	auto message = readinfile(EFile_Name);
+	//std::cout<<message<<std::endl;
 	auto key = readinfile(PK_name);
 	std::string key_e = "";
 	std::string key_n = "";
@@ -123,8 +165,8 @@ void actionE(){
 		}
 	}
 	std::string::size_type sz;
-	unsigned long long int e_value = std::stoull (key_e);
-	unsigned long long int n_value = std::stoull (key_n);
+	unsigned long long int e_value = std::stoull (key_e); //test case: test_for_encryted.txt
+	unsigned long long int n_value = std::stoull (key_n); // Encrypte_key.txt
 	//std::cout<<key_e<<" "<<key_n<<std::endl;
 	std::vector<unsigned long long int>product_list = {};
 	for (auto i : message){
@@ -224,6 +266,9 @@ void actionI(){
 
 int main(){
 	std::string action;
+	unsigned long long int A = 454;
+	unsigned long long int B = 90;
+	powerfunction(A,B);
 	std::cout << "Enter 'e' for Encrypte or 'd' for Decryte or 'i' for initial >>> ";
 	std::cin >> action;
 	if (action == "e"){
