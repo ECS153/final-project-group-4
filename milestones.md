@@ -4,7 +4,7 @@
 We have made up our minds on how to grow the project in ways that everyone is interested in, as well as fleshing out the application a lot more.
 
 **Goals and Responsibilities**  
-*Weishen Liu* - Expand OTP to include special characters<br/>
+*Weishen Liu* - Expand OTP to include special characters and RSA<br/>
 *Andrew Samuelson* - Investigate ways to break the encryption if using pusedorandom numbers <br/>
 *Sarrah Kothawala* - Finish up website authentication and help with breaking <br/>
 *Hexi Huang* - research and build truly random number generator, finish up design docs <br/>
