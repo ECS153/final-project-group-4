@@ -7,7 +7,7 @@ We have made up our minds on how to grow the project in ways that everyone is in
 *Weishen Liu* - Expand OTP to include special characters<br/>
 *Andrew Samuelson* - Investigate ways to break the encryption if using pusedorandom numbers <br/>
 *Sarrah Kothawala* - Finish up website authentication and help with breaking <br/>
-*Hexi Huang* - resarch and build truly random number generator <br/>
+*Hexi Huang* - research and build truly random number generator, finish up design docs <br/>
 
 PR- https://github.com/ECS153/final-project-group-4/pull/2 - merged
 
