@@ -10,6 +10,7 @@ We have made up our minds on how to grow the project in ways that everyone is in
 *Hexi Huang* - research and build truly random number generator, finish up design docs <br/>
 
 PR- https://github.com/ECS153/final-project-group-4/pull/2 - merged
+Video: https://www.youtube.com/watch?v=mBeK80qanYo
 
 ## Milestone 2 - 5/19/2020
 
