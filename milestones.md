@@ -1,4 +1,14 @@
 # Milestones
+## Milestone 3 - 5/26/2020
+
+We have made up our minds on how to grow the project in ways that everyone is interested in, as well as fleshing out the application a lot more.
+
+**Goals and Responsibilities**  
+*Weishen Liu* - Expand OTP to include special characters<br/>
+*Andrew Samuelson* - Investigate ways to break the encryption if using pusedorandom numbers <br/>
+*Sarrah Kothawala* - Finish up website authentication and help with breaking <br/>
+*Hexi Huang* - resarch and build truly random number generator <br/>
+
 ## Milestone 2 - 5/19/2020
 
 This time, we discuss what we can do to extend the project. We kind of want to work toward the Login confirmation for checking real person action. Also, we want to build a more user friendly to encryted and decryted the messages. We are thinking of Google Chrome extension or local application.
