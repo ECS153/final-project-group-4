@@ -12,17 +12,17 @@
 unsigned long long int generate_the_public_key(int mode){ //mode for 1024 or 2048
 //std::string generate_the_public_key(int mode){ //mode for 1024 or 2048
 	unsigned long long int time = 0;
-	std::ofstream myfile;
+	//std::ofstream myfile;
 	unsigned long long int result = 0;
-	myfile.open("Key_N_inital.txt");
+	//myfile.open("Key_N_inital.txt");
 	std::srand (std::time(0));
 	unsigned long long int range = mode;
 	while( time < range){
 		result += rand();
 		time += 1;
 	}
-	myfile << result;
-  	myfile.close();
+	//myfile << result;
+  	//myfile.close();
   	return (unsigned long long int)result;
 }
 
@@ -38,41 +38,42 @@ unsigned long long int all_prime_num (unsigned long long int N_key){
 
 unsigned long long int get_the_e(unsigned long long int N_size, unsigned long long int N){
 	std::vector<unsigned long long int> e_list = {};
-	std::cout<<"here0"<<std::endl;
-	for(unsigned long long int i = 2; i < N_size; i++){
+	//std::cout<<"here0"<<std::endl;
+	for(unsigned long long int i = 200; i < 600; i++){
 		if ((N_size % i != 0) && (N % i != 0) ){
 			e_list.push_back(i);
 		}
+
 	}
 	std::srand (std::time(0));
-	std::cout<<"here1"<<std::endl;
-	std::cout<<e_list.size()<<std::endl;
-	std::cout<<N_size<<std::endl;
+	//std::cout<<"here1"<<std::endl;
+	//std::cout<<e_list.size()<<std::endl;
+	//std::cout<<N_size<<std::endl;
 	int temp_index = 0;
 	do{
 		temp_index = rand();
 	}while(temp_index > e_list.size()-1);
-	std::cout<<"here2"<<std::endl;
+	//std::cout<<"here2"<<std::endl;
 	return e_list[temp_index];
 }
 
 unsigned long long int get_the_d(unsigned long long int e_value, unsigned long long int N_size){
 	unsigned long long int k = 1;
 	std::vector<unsigned long long int> d_value = {};
-	std::cout<<"here3"<<std::endl;
+	//std::cout<<"here3"<<std::endl;
 	while(d_value.size() < 100){
 		if ((k*N_size+1) % e_value == 0){
 			d_value.push_back((unsigned long long int)((k*N_size+1) / e_value));
 		}
 		k += 1;
 	}
-	std::cout<<"here4"<<std::endl;
+	//std::cout<<"here4"<<std::endl;
 	std::srand (std::time(0));
 	int temp_index = 0;
 	do{
 		temp_index = rand() % 100;
 	}while(temp_index > d_value.size()-1);
-	std::cout<<"here4"<<std::endl;
+	//std::cout<<"here4"<<std::endl;
 	return d_value[temp_index];
 }
 
@@ -200,13 +201,13 @@ void actionI(){
 	std::cout << "Enter an int (32 Max) for key N length >>> ";
 	std::cin >> style;
 	unsigned long long int temp = generate_the_public_key(style);
-	std::cout<<"pass here1"<<std::endl;
+	//std::cout<<"pass here1"<<std::endl;
 	unsigned long long int prime_list = all_prime_num(temp);
-	std::cout<<"pass here2"<<std::endl;
+	//std::cout<<"pass here2"<<std::endl;
 	auto num_e = get_the_e(prime_list, temp);
-	std::cout<<"pass here3"<<std::endl;
+	//std::cout<<"pass here3"<<std::endl;
 	auto num_d = get_the_d(num_e,prime_list);
-	std::cout<<"pass here4"<<std::endl;
+	//std::cout<<"pass here4"<<std::endl;
 	std::ofstream myfile;
 	myfile.open("Encrypte_key.txt");
 	std::string temp_str = std::to_string(num_e) + "," + std::to_string(temp);
