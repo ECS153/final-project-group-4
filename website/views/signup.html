@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A cool thing made with Glitch" />
+
+    <title>Login!</title>
+
+    <link
+      id="favicon"
+      rel="icon"
+      href="https://glitch.com/edit/favicon-app.ico"
+      type="image/x-icon"
+    />
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- import the webpage's client-side javascript file -->
+    <script src="/signup.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>
+        Encrypted Messages (Signup)
+      </h1>
+    </header>
+
+    <main>
+      <p>Create an account using the form below:</p>
+
+      <form>
+        <label for="username">Username:</label>
+        <input name="username" type="text" />
+
+        <label for="password">Password:</label>
+        <input name="password" type="password" />
+
+        <label for="password2">Repeat Password:</label>
+        <input name="password2" type="password" />
+
+        <button type="submit" id="signup">Signup</button>
+      </form>
+
+      <p>
+        If you already have an account, you can login
+        <a href="/">here</a>.
+      </p>
+    </main>
+
+    <footer>Made with <a href="https://glitch.com">Glitch</a>!</footer>
+
+    <!-- include the Glitch button to show what the webpage is about and
+          to make it easier for folks to view source and remix -->
+    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
+    <script src="https://button.glitch.me/button.js" defer></script>
+  </body>
+</html>
