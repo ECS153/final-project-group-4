@@ -9,6 +9,8 @@ We have made up our minds on how to grow the project in ways that everyone is in
 *Sarrah Kothawala* - Finish up website authentication and help with breaking <br/>
 *Hexi Huang* - resarch and build truly random number generator <br/>
 
+PR- https://github.com/ECS153/final-project-group-4/pull/2
+
 ## Milestone 2 - 5/19/2020
 
 This time, we discuss what we can do to extend the project. We kind of want to work toward the Login confirmation for checking real person action. Also, we want to build a more user friendly to encryted and decryted the messages. We are thinking of Google Chrome extension or local application.
