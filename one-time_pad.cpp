@@ -121,7 +121,17 @@ int main(){
 								  'M','N','O','P','Q','R',
 								  'S','T','U','V','W','X',
 								  'Y','Z','0','1','2','3',
-								  '4','5','6','7','8','9'};
+								  '4','5','6','7','8','9',
+								  'a','b','c','d','e','f',
+								  'g','h','i','j','k','l',
+								  'm','n','o','p','q','r',
+								  's','t','u','v','w','x',
+								  'y','z',' ','!','"','#',
+								  '$','%','&','\'','(',')',
+        						  '*','+','-','.','/',':',
+        						  ';','<','=','>','?','@',
+        						  '[','\\',']','^','_','`',
+        						  '{','|','}','~','\0'};
 	GenerateBoard(VECTOR,num_char);
 	int check_point_One_Time = 0;
 	int check_point_cyber = 0;
@@ -141,12 +151,12 @@ int main(){
 		std::cout << "Input the CyberText for decrypted or Text to Encrypted -> ";
 		std::cin >> Cyber;
 		for(auto i : One){//check the capitalization of the input
-			if (((int) i >=48 && (int) i <= 57) || ((int) i >=65 && (int) i <= 90)){
+			if (((int) i >=32 && (int) i <= 126) || ((int) i== 0)){
 				check_point_One_Time++;
 			}
 		}
 		for(auto i : Cyber){
-			if (((int) i >=48 && (int) i <= 57) || ((int) i >=65 && (int) i <= 90)){
+			if (((int) i >=32 && (int) i <= 126) || ((int) i== 0)){
 				check_point_cyber++;
 			}
 		}
