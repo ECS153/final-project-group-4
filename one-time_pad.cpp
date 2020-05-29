@@ -30,46 +30,13 @@ std::vector<char> splitastring(std::string InputStr){
 	}
 	return tempstr;
 }
-//get the element index in a list [A to Z and 0 to 9] with binary search
-int FindElement(char Element){
-	double ascii_num = (double) Element;
-	int char_beg = 65;
-	int char_end = 90;
-	int int_beg = 48;
-	int int_end = 57;
-	double Balence_char = (char_end-char_beg)/2;
-	double Balence_int = (int_end-int_beg)/2;
-	bool check = true;
-	if (ascii_num <= char_end && ascii_num >= char_beg){
-		while(Balence_char != ascii_num){
-			if (Balence_char > ascii_num){
-				char_end = Balence_char;
-			}
-			else{
-				char_beg = Balence_char;
-			}
-			Balence_char = (char_end - char_beg)/2 + char_beg;
-			Balence_char = (int) Balence_char;
+//get the element index in a list about ascii
+int FindElement(char Element, const std::vector<char> library){
+	for (int i = 0; i < library.size();i++){
+		if (library[i] == Element){
+			return i;
 		}
 	}
-	else{
-		check = false;
-		while(Balence_int != ascii_num){
-			if (Balence_int > ascii_num){
-				int_end = Balence_int;
-			}
-			else{
-				int_beg = Balence_int;
-			}
-			Balence_int = (int_end - int_beg)/2 + int_beg;
-			Balence_int = (int) Balence_int;
-		}
-	}
-
-	if (check){
-		return Balence_char-65;	
-	}
-	return Balence_int-48+26;
 }
 
 //function of decoding
@@ -83,7 +50,7 @@ std::string Decode(std::string One_Time, std::string CyberText,
 	char element = ' ';
 	for (int i = 0; i < CyberText_list.size(); i++){ //one time pad can be longer than the cybertext
 		int temp_index = 0;
-		for (auto ele : library[FindElement(One_Time_list[i])]){//loop the vector to find the cyber text in the standard table
+		for (auto ele : library[FindElement(One_Time_list[i],standard)]){//loop the vector to find the cyber text in the standard table
 			if (ele != CyberText[i]){
 				temp_index++;
 			}
@@ -107,7 +74,7 @@ std::string Encode(std::string One_Time, std::string CyberText,
 
 	//get the value from X and Y axis from the standard table
 	for (int each_index = 0; each_index < CyberText_list.size(); each_index++){
-		EncodedText += library[FindElement(One_Time_list[each_index])][FindElement(CyberText_list[each_index])];
+		EncodedText += library[FindElement(One_Time_list[each_index],standard)][FindElement(CyberText_list[each_index],standard)];
 	}
 	return EncodedText;
 
@@ -116,22 +83,22 @@ std::string Encode(std::string One_Time, std::string CyberText,
 int main(){
 
 	std::vector< std::vector<char> > VECTOR;
-	std::vector<char> num_char = {'A','B','C','D','E','F',
-								  'G','H','I','J','K','L',
-								  'M','N','O','P','Q','R',
-								  'S','T','U','V','W','X',
-								  'Y','Z','0','1','2','3',
-								  '4','5','6','7','8','9',
-								  'a','b','c','d','e','f',
+	std::vector<char> num_char = {'\0','!','"','#',
+								  '$','%','&','\'','(',')',
+        						  '*','+',',','-','.','/',
+        						  '0','1','2','3','4','5',
+        						  '6','7','8','9',':',';',
+        						  '<','=','>','?','@','A',
+        						  'B','C','D','E','F','G',
+        						  'H','I','J','K','L','M',
+        						  'N','O','P','Q','R','S',
+        						  'T','U','V','W','X','Y',
+        						  'Z','[','\\',']','^','_','`',
+        						  'a','b','c','d','e','f',
 								  'g','h','i','j','k','l',
 								  'm','n','o','p','q','r',
 								  's','t','u','v','w','x',
-								  'y','z',' ','!','"','#',
-								  '$','%','&','\'','(',')',
-        						  '*','+','-','.','/',':',
-        						  ';','<','=','>','?','@',
-        						  '[','\\',']','^','_','`',
-        						  '{','|','}','~','\0'};
+								  'y','z','{','|','}','~'};
 	GenerateBoard(VECTOR,num_char);
 	int check_point_One_Time = 0;
 	int check_point_cyber = 0;
@@ -148,7 +115,7 @@ int main(){
 		std::cin >> Options;
 		std::cout << "Input the One-Time Pad -> ";
 		std::cin >> One;
-		std::cout << "Input the CyberText for decrypted or Text to Encrypted -> ";
+		std::cout << "Input the CyberText for decrypted or Text to Encrypted (use '_' for space)-> ";
 		std::cin >> Cyber;
 		for(auto i : One){//check the capitalization of the input
 			if (((int) i >=32 && (int) i <= 126) || ((int) i== 0)){
