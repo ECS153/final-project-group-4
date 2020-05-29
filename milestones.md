@@ -32,7 +32,7 @@ First meeting, got everyone on the same page about the project and the end goal 
 **Goals and Responsibilities**  
 *Weishen Liu* - Begin working on decryption function  
 *Andrew Samuelson* - Begin Working on decryption function  
-*Hexi Huang* - Create video, milestone documents and assist in programming.
+*Hexi Huang* - Create video, milestone documents and assist in programming
 
 
 [Video For 5/12/2020](https://www.youtube.com/watch?v=nf5VZhvOlS0)
