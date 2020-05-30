@@ -2,7 +2,7 @@
 #include <vector>
 #include <iostream>
 #include <string>
-
+#include <algorithm>
 //generate a standard library for the universal tabling 
 void GenerateBoard(std::vector< std::vector<char> > &v, const std::vector<char> rule){
 	for(int i = 0; i < rule.size(); i++){
@@ -83,6 +83,7 @@ std::string Encode(std::string One_Time, std::string CyberText,
 int main(){
 
 	std::vector< std::vector<char> > VECTOR;
+	/*
 	std::vector<char> num_char = {'\0','!','"','#',
 								  '$','%','&','\'','(',')',
         						  '*','+',',','-','.','/',
@@ -99,32 +100,47 @@ int main(){
 								  'm','n','o','p','q','r',
 								  's','t','u','v','w','x',
 								  'y','z','{','|','}','~'};
-	GenerateBoard(VECTOR,num_char);
+
+	*/
+	
 	int check_point_One_Time = 0;
 	int check_point_cyber = 0;
 	std::string One;
 	std::string Cyber;
 	std::string Options;
+	std::vector<char> num_char = {};
+	std::string Temp_elements;
 	//One = "W8JD7SDJFHSK";
 	//Cyber = "HELLO";
 	//Options = "a";
 	//Cyber = "3CUOL";
 	
 	while (true){ //confirm the input is valid
+		std::cout << "Enter the elements in the one time pad table elements (the element in the table can be repeat and no space for the element; For example: ABCDabcd1234)\n-> ";
+		std::cin >> Temp_elements;
 		std::cout << "Enter 'a' for 'Encrypted' or 'b' for 'decrypted' -> ";
 		std::cin >> Options;
 		std::cout << "Input the One-Time Pad -> ";
 		std::cin >> One;
 		std::cout << "Input the CyberText for decrypted or Text to Encrypted (use '_' for space)-> ";
 		std::cin >> Cyber;
+		for (auto i : Temp_elements){
+			num_char.push_back(i);
+		}
 		for(auto i : One){//check the capitalization of the input
 			if (((int) i >=32 && (int) i <= 126) || ((int) i== 0)){
 				check_point_One_Time++;
+			}
+			if (std::find(num_char.begin(), num_char.end(), i) == num_char.end()){
+				check_point_One_Time--;
 			}
 		}
 		for(auto i : Cyber){
 			if (((int) i >=32 && (int) i <= 126) || ((int) i== 0)){
 				check_point_cyber++;
+			}
+			if (std::find(num_char.begin(), num_char.end(), i) == num_char.end()){
+				check_point_cyber--;
 			}
 		}
 		//need to be number or full cap, one time pad can be longer than text, but not shorter, there are only two options for modes
@@ -134,12 +150,17 @@ int main(){
 			Options = "";
 			check_point_One_Time = 0;
 			check_point_cyber = 0;
+			Temp_elements = "";
+			num_char = {};
 		}
 		else{
+			
 			break;
 		}
 	}
+
 	
+	GenerateBoard(VECTOR,num_char);
 	if (Options == "a"){ //different mode, encryted, and decryted
 		std::string PlainText = Encode(One, Cyber, VECTOR, num_char);
 		std::cout << PlainText << std::endl;
