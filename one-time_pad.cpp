@@ -110,22 +110,48 @@ int main(){
 	std::string Options;
 	std::vector<char> num_char = {};
 	std::string Temp_elements;
+	bool checking = false;
 	//One = "W8JD7SDJFHSK";
 	//Cyber = "HELLO";
 	//Options = "a";
 	//Cyber = "3CUOL";
 	
 	while (true){ //confirm the input is valid
-		std::cout << "Enter the elements in the one time pad table elements (the element in the table can be repeat and no space for the element; For example: ABCDabcd1234)\n-> ";
-		std::cin >> Temp_elements;
+		std::cout << "Enter the elements in the one time pad table elements (the element in the table cannot be repeat, no space for the element, if enter nothing, will use ascii number elements as standard table; For example: ABCDabcd1234)\n-> ";
+		//std::cin >> Temp_elements;
+		std::getline (std::cin,Temp_elements);
 		std::cout << "Enter 'a' for 'Encrypted' or 'b' for 'decrypted' -> ";
 		std::cin >> Options;
 		std::cout << "Input the One-Time Pad -> ";
 		std::cin >> One;
 		std::cout << "Input the CyberText for decrypted or Text to Encrypted (use '_' for space)-> ";
 		std::cin >> Cyber;
-		for (auto i : Temp_elements){
-			num_char.push_back(i);
+		if (Temp_elements.size() == 0){
+			num_char = {'\0','!','"','#',
+						'$','%','&','\'','(',')',
+						'*','+',',','-','.','/',
+						'0','1','2','3','4','5',
+						'6','7','8','9',':',';',
+						'<','=','>','?','@','A',
+						'B','C','D','E','F','G',
+						'H','I','J','K','L','M',
+						'N','O','P','Q','R','S',
+						'T','U','V','W','X','Y',
+						'Z','[','\\',']','^','_','`',
+						'a','b','c','d','e','f',
+						'g','h','i','j','k','l',
+						'm','n','o','p','q','r',
+						's','t','u','v','w','x',
+						'y','z','{','|','}','~'};
+			std::cout << "\nUsing ascii table elements into One Time Pad table\n"<<std::endl;
+		}
+		else{
+			for (auto i : Temp_elements){
+				if (std::find(num_char.begin(), num_char.end(), i) != num_char.end()){
+					checking = true;
+				}
+				num_char.push_back(i);
+			}
 		}
 		for(auto i : One){//check the capitalization of the input
 			if (((int) i >=32 && (int) i <= 126) || ((int) i== 0)){
@@ -145,6 +171,15 @@ int main(){
 		}
 		//need to be number or full cap, one time pad can be longer than text, but not shorter, there are only two options for modes
 		if (check_point_cyber != Cyber.size() || check_point_One_Time != One.size() || (Options != "a" && Options != "b") || (check_point_One_Time < check_point_cyber)){
+			One = "";
+			Cyber = "";
+			Options = "";
+			check_point_One_Time = 0;
+			check_point_cyber = 0;
+			Temp_elements = "";
+			num_char = {};
+		}
+		else if(checking){
 			One = "";
 			Cyber = "";
 			Options = "";
