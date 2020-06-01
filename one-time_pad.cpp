@@ -31,7 +31,7 @@ std::vector<char> splitastring(std::string InputStr){
 	return tempstr;
 }
 //get the element index in a list about ascii
-int FindElement(char Element, const std::vector<char> library){
+int FindElement(char Element, const std::vector<char> library){  //this is not the table
 	for (int i = 0; i < library.size();i++){
 		if (library[i] == Element){
 			return i;
@@ -77,7 +77,7 @@ std::string Encode(std::string One_Time, std::string CyberText,
 		EncodedText += library[FindElement(One_Time_list[each_index],standard)][FindElement(CyberText_list[each_index],standard)];
 	}
 	return EncodedText;
-
+    // send EncodedText to the node server 
 }
 
 int main(){
@@ -110,7 +110,7 @@ int main(){
 	std::string Options;
 	std::vector<char> num_char = {};
 	std::string Temp_elements;
-	bool checking = false;
+	bool repeatCharCheck = false;
 	//One = "W8JD7SDJFHSK";
 	//Cyber = "HELLO";
 	//Options = "a";
@@ -148,16 +148,17 @@ int main(){
 		else{
 			for (auto i : Temp_elements){
 				if (std::find(num_char.begin(), num_char.end(), i) != num_char.end()){
-					checking = true;
+					repeatCharCheck = true;
 				}
 				num_char.push_back(i);
 			}
 		}
+
 		for(auto i : One){//check the capitalization of the input
 			if (((int) i >=32 && (int) i <= 126) || ((int) i== 0)){
 				check_point_One_Time++;
 			}
-			if (std::find(num_char.begin(), num_char.end(), i) == num_char.end()){
+			if (std::find(num_char.begin(), num_char.end(), i) == num_char.end()){ //if current element of One isn't in num_char 
 				check_point_One_Time--;
 			}
 		}
@@ -165,7 +166,7 @@ int main(){
 			if (((int) i >=32 && (int) i <= 126) || ((int) i== 0)){
 				check_point_cyber++;
 			}
-			if (std::find(num_char.begin(), num_char.end(), i) == num_char.end()){
+			if (std::find(num_char.begin(), num_char.end(), i) == num_char.end()){ //if current element of Cyber isn't in num_char 
 				check_point_cyber--;
 			}
 		}
@@ -179,7 +180,7 @@ int main(){
 			Temp_elements = "";
 			num_char = {};
 		}
-		else if(checking){
+		else if(repeatCharCheck){
 			One = "";
 			Cyber = "";
 			Options = "";
