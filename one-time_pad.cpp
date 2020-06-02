@@ -1,8 +1,18 @@
+
+
+/*
+
+#include <node.h>         // transfer data to node server
+#include <node_buffer.h>   //transfer data to node server
+*/
 //Decryption method, Program the encryption and decryption table. Will test on toy messages. 
 #include <vector>
 #include <iostream>
 #include <string>
 #include <algorithm>
+
+
+
 //generate a standard library for the universal tabling 
 void GenerateBoard(std::vector< std::vector<char> > &v, const std::vector<char> rule){
 	for(int i = 0; i < rule.size(); i++){
