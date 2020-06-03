@@ -35,4 +35,6 @@ decryption, and some files will be create:
 
 4. outputQRcode.html: when you open this html, it will appear a QR code, if you scan it, you will have the output after encryption or decryption, and you are able to let others to scan and copy it.
 
-
+-----source code-----
+I posted the source that I use in this one time pad in my one-time_pad.cpp file, such as:
+https://github.com/nayuki/QR-Code-generator
