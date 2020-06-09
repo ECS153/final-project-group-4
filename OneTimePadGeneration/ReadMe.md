@@ -41,6 +41,8 @@ decryption, and some files will be create:
 
 6. qrcode.png: this is the qr code for the outputmessage, here use myqr, but the qr code that comes out will be right when your one time pad table did not contain special character, which is:
 
+7. pop up window: it will first try to use google chrome to open the html version qr code, but if you do not have a google chome, it will open the png version qr code for you
+
 ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890
 
 -----source code-----
