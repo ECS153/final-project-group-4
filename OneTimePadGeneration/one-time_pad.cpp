@@ -3,9 +3,13 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <stdio.h>
 #include "QrCode.hpp"  //package from https://github.com/nayuki/QR-Code-generator
 #include "QrCode.cpp"
 #include <fstream>
+#include <cstdlib> //https://blog.csdn.net/xiangxianghehe/article/details/77351721
+//https://github.com/sylnsfar/qrcode/blob/master/README-cn.md
+//for storing the QR code as .png
 //generate a standard library for the universal tabling 
 void GenerateBoard(std::vector< std::vector<char> > &v, const std::vector<char> rule){
 	for(int i = 0; i < rule.size(); i++){
@@ -225,12 +229,20 @@ int main(){
 		std::cout << PlainText << std::endl;
 		const char* s = PlainText.c_str();//https://stackoverflow.com/questions/5638831/c-char-array
 		using namespace qrcodegen;
-		QrCode qr0 = QrCode::encodeText(s, QrCode::Ecc::MEDIUM);
-		std::string svg = qr0.toSvgString(4);
+		QrCode qr0 = QrCode::encodeText(s, QrCode::Ecc::LOW);
+		std::string svg = qr0.toSvgString(100);
 		std::ofstream myfile3;
 		myfile3.open ("outputQRcode.html");
 		myfile3 << svg;
 		myfile3.close();
+		std::ofstream myfile4;
+		myfile4.open ("outputMessage.txt");
+		myfile4 << PlainText;
+		myfile4.close();
+		std::string temp_str = "myqr "+ PlainText +" -v 10 -l H";
+		const char* commandline = temp_str.c_str();
+		std::system(commandline);//https://github.com/sylnsfar/qrcode/blob/master/README-cn.md
+	
 	}
 	else{
 		std::string PlainText = Decode(One, Cyber, VECTOR, num_char);
@@ -238,12 +250,20 @@ int main(){
 		std::cout << PlainText << std::endl;
 		const char* s = PlainText.c_str();//https://stackoverflow.com/questions/5638831/c-char-array
 		using namespace qrcodegen;
-		QrCode qr0 = QrCode::encodeText(s, QrCode::Ecc::MEDIUM);
-		std::string svg = qr0.toSvgString(4);
+		QrCode qr0 = QrCode::encodeText(s, QrCode::Ecc::LOW);
+		std::string svg = qr0.toSvgString(100);
 		std::ofstream myfile3;
 		myfile3.open ("outputQRcode.html");
 		myfile3 << svg;
 		myfile3.close();
+		std::ofstream myfile4;
+		myfile4.open ("outputMessage.txt");
+		myfile3 << PlainText;
+		myfile4.close();
+		std::string temp_str = "myqr "+ PlainText +" -v 10 -l H";
+		const char* commandline = temp_str.c_str();
+		std::system(commandline);//https://github.com/sylnsfar/qrcode/blob/master/README-cn.md
+	
 	}
 	return 0;
 }
