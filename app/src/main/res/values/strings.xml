@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">OnePadApp</string>
+    <string name="edit_message">Enter Your Channel</string>
+    <string name="button_send">Send</string>
+
+
+</resources>
+
