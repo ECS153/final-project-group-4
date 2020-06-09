@@ -3,15 +3,8 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
-#include <stdio.h>
-#include "QrCode.hpp"  //package from https://github.com/nayuki/QR-Code-generator
-#include "QrCode.cpp"
-#include <fstream>
-#include <cstdlib> //https://blog.csdn.net/xiangxianghehe/article/details/77351721
-//https://github.com/sylnsfar/qrcode/blob/master/README-cn.md
-//for storing the QR code as .png
 //generate a standard library for the universal tabling 
-void GenerateBoard(std::vector< std::vector<char> > &v, const std::vector<char> rule){ //generate the one time pad table
+void GenerateBoard(std::vector< std::vector<char> > &v, const std::vector<char> rule){
 	for(int i = 0; i < rule.size(); i++){
 		if (i ==0){
 			v.push_back(rule);
@@ -124,21 +117,17 @@ int main(){
 	//Cyber = "3CUOL";
 	
 	while (true){ //confirm the input is valid
-		//take the table elements
 		std::cout << "Enter the elements in the one time pad table elements (the element in the table cannot be repeat, no space for the element, if enter nothing, will use ascii number elements as standard table; For example: ABCDabcd1234)\n-> ";
 		//std::cin >> Temp_elements;
 		std::getline (std::cin,Temp_elements);
-		//choose the mode
 		std::cout << "Enter 'a' for 'Encrypted' or 'b' for 'decrypted' -> ";
 		std::cin >> Options;
-		//input for the one time pad key
 		std::cout << "Input the One-Time Pad -> ";
 		std::cin >> One;
-		//input the text for encryption or decryption
 		std::cout << "Input the CyberText for decrypted or Text to Encrypted (use '_' for space)-> ";
 		std::cin >> Cyber;
-		if (Temp_elements.size() == 0){ //standard table
-			num_char = {'!','"','#',
+		if (Temp_elements.size() == 0){
+			num_char = {'\0','!','"','#',
 						'$','%','&','\'','(',')',
 						'*','+',',','-','.','/',
 						'0','1','2','3','4','5',
@@ -156,7 +145,7 @@ int main(){
 						'y','z','{','|','}','~'};
 			std::cout << "\nUsing ascii table elements into One Time Pad table\n"<<std::endl;
 		}
-		else{ //check if all elements in the input for table element is repreated
+		else{
 			for (auto i : Temp_elements){
 				if (std::find(num_char.begin(), num_char.end(), i) != num_char.end()){
 					checking = true;
@@ -168,11 +157,11 @@ int main(){
 			if (((int) i >=32 && (int) i <= 126) || ((int) i== 0)){
 				check_point_One_Time++;
 			}
-			if (std::find(num_char.begin(), num_char.end(), i) == num_char.end()){ //if not in one time pad table elements
+			if (std::find(num_char.begin(), num_char.end(), i) == num_char.end()){
 				check_point_One_Time--;
 			}
 		}
-		for(auto i : Cyber){ //same as above
+		for(auto i : Cyber){
 			if (((int) i >=32 && (int) i <= 126) || ((int) i== 0)){
 				check_point_cyber++;
 			}
@@ -190,7 +179,7 @@ int main(){
 			Temp_elements = "";
 			num_char = {};
 		}
-		else if(checking){ //if repeated elements, restart over
+		else if(checking){
 			One = "";
 			Cyber = "";
 			Options = "";
@@ -204,83 +193,25 @@ int main(){
 			break;
 		}
 	}
-	//write the information into the files
-	std::ofstream myfile;
-	myfile.open ("tableelement.txt"); //put down the table elements
-	if (Temp_elements.size() != 0){
-		myfile << Temp_elements;
+
+	
+	GenerateBoard(VECTOR,num_char);
+	if (Options == "a"){ //different mode, encryted, and decryted
+		std::string PlainText = Encode(One, Cyber, VECTOR, num_char);
+		std::cout << PlainText << std::endl;
 	}
 	else{
-		std::string inputproduct;
-		for (auto i : num_char){
-			inputproduct += i;
-		}
-		myfile << inputproduct;
-	}
-	myfile.close();
-	std::ofstream myfile1;
-	myfile1.open ("inputOneTimePadkey.txt");
-	myfile1 << One;
-	myfile1.close();
-	std::ofstream myfile2;
-	myfile2.open ("InputMessage.txt");
-	myfile2 << Cyber;
-	myfile2.close();
-
-	GenerateBoard(VECTOR,num_char);//board generation
-	if (Options == "a"){ //different mode, encryted, and decryted
-		std::string PlainText = Encode(One, Cyber, VECTOR, num_char);//enryption
-		std::cout << PlainText << std::endl;
-		const char* s = PlainText.c_str();//https://stackoverflow.com/questions/5638831/c-char-array
-		using namespace qrcodegen;
-		QrCode qr0 = QrCode::encodeText(s, QrCode::Ecc::LOW); //start the qr code generation for the html version
-		std::string svg = qr0.toSvgString(100);
-		std::ofstream myfile3;
-		myfile3.open ("outputQRcode.html");
-		myfile3 << svg;
-		myfile3.close();
-		std::ofstream myfile4;
-		myfile4.open ("outputMessage.txt"); //save the output message
-		myfile4 << PlainText;
-		myfile4.close();
-		std::string temp_str = "myqr "+ PlainText +" -v 10 -l H"; //this is for the png version
-		const char* commandline = temp_str.c_str();
-		std::system(commandline);//https://github.com/sylnsfar/qrcode/blob/master/README-cn.md
-		try{//https://www.geeksforgeeks.org/exception-handling-c/
-			std::system("google-chrome outputQRcode.html"); //try to use the html version
-			//https://stackoverflow.com/questions/27760105/how-can-i-run-a-html-file-from-terminal/55531753
-		}
-		catch(...){
-			std::system("xdg-open qrcode.png"); //open the file directly
-		}	
-	}
-	else{//for decryption
 		std::string PlainText = Decode(One, Cyber, VECTOR, num_char);
 		std::cout << PlainText << std::endl;
-
-		const char* s = PlainText.c_str();//https://stackoverflow.com/questions/5638831/c-char-array
-		using namespace qrcodegen;
-		QrCode qr0 = QrCode::encodeText(s, QrCode::Ecc::LOW); //similar to above, about the html version qr code
-		std::string svg = qr0.toSvgString(100);
-		std::ofstream myfile3;
-		myfile3.open ("outputQRcode.html");
-		myfile3 << svg;
-		myfile3.close();
-		std::ofstream myfile4;
-		myfile4.open ("outputMessage.txt");//save the output message
-		myfile3 << PlainText;
-		myfile4.close();
-		std::string temp_str = "myqr "+ PlainText +" -v 10 -l H"; //save the png version qr code
-		const char* commandline = temp_str.c_str();
-		std::system(commandline);//https://github.com/sylnsfar/qrcode/blob/master/README-cn.md
-		try{//https://www.geeksforgeeks.org/exception-handling-c/
-			std::system("google-chrome outputQRcode.html"); //try to use the html version
-			//https://stackoverflow.com/questions/27760105/how-can-i-run-a-html-file-from-terminal/55531753
-		}
-		catch(...){
-			std::system("xdg-open qrcode.png"); //open the file directly
-		}
 	}
+	/*
+	for (int each_element = 0; each_element < VECTOR.size(); each_element++){
+		std::string Text;
+		for(int i = 0; i < VECTOR.size(); i++){
+			Text.push_back(VECTOR[each_element][i]);
+		}
+		std::cout << Text << std::endl;
+	}*/
 	return 0;
 }
 
