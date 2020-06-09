@@ -8,9 +8,8 @@ Files:
 
 milestones.md: Meeting notes
 
-OneTimePadGeneration: The program that can use for encryption/decryption, and generate the result become qr code
-
-                      There is a ReadMe.md for the program inside the folder
+OneTimePadGeneration: The program that can use for encryption/decryption, and generate the result become qr code.
+There is a ReadMe.md for the program inside the folder
 
 website	website: Web version for the chat room that can use for the encryption/decryption messaging
 
