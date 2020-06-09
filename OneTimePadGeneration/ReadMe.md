@@ -8,6 +8,8 @@ In order to use the program, you need to do:
 
 make
 
+pip3 install MyQR
+
 g++ one-time_pad.cpp
 
 ./a.out
@@ -37,11 +39,17 @@ decryption, and some files will be create:
 
 5. outputMessage.txt: this is the message after encrpytion / decryption
 
-6. qrcode.png: this is the qr code for the outputmessage
+6. qrcode.png: this is the qr code for the outputmessage, here use myqr, but the qr code that comes out will be right when your one time pad table did not contain special character, which is:
+
+ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890
 
 -----source code-----
 I posted the source that I use in this one time pad in my one-time_pad.cpp file, such as:
+
 https://github.com/nayuki/QR-Code-generator
+
 https://github.com/sylnsfar/qrcode/blob/master/README-cn.md
+
 https://blog.csdn.net/xiangxianghehe/article/details/77351721
+
 https://en.cppreference.com/w/cpp/utility/program/system
