@@ -257,7 +257,7 @@ int main(){
 	else{//for decryption
 		std::string PlainText = Decode(One, Cyber, VECTOR, num_char);
 		std::cout << PlainText << std::endl;
-		std::cout << PlainText << std::endl;
+
 		const char* s = PlainText.c_str();//https://stackoverflow.com/questions/5638831/c-char-array
 		using namespace qrcodegen;
 		QrCode qr0 = QrCode::encodeText(s, QrCode::Ecc::LOW); //similar to above, about the html version qr code
