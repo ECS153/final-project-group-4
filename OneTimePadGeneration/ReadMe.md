@@ -35,7 +35,7 @@ decryption, and some files will be create:
 
 3. InputMessage.txt: this is the message you input
 
-4. outputQRcode.html: when you open this html, it will appear a QR code, if you scan it, you will have the output after encryption or decryption, and you are able to let others to scan and copy it.
+4. outputQRcode.html: when you open this html, it will appear a QR code, if you scan it, you will have the output after encryption or decryption, and you are able to let others to scan and copy it. This one can use for the one time pad table that is contain special character, but not the qrcode.png file
 
 5. outputMessage.txt: this is the message after encrpytion / decryption
 
