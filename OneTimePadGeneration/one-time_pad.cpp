@@ -242,7 +242,7 @@ int main(){
 		std::string temp_str = "myqr "+ PlainText +" -v 10 -l H";
 		const char* commandline = temp_str.c_str();
 		std::system(commandline);//https://github.com/sylnsfar/qrcode/blob/master/README-cn.md
-	
+		std::system("xdg-open qrcode.png");
 	}
 	else{
 		std::string PlainText = Decode(One, Cyber, VECTOR, num_char);
@@ -263,7 +263,7 @@ int main(){
 		std::string temp_str = "myqr "+ PlainText +" -v 10 -l H";
 		const char* commandline = temp_str.c_str();
 		std::system(commandline);//https://github.com/sylnsfar/qrcode/blob/master/README-cn.md
-	
+		std::system("xdg-open qrcode.png");
 	}
 	return 0;
 }
